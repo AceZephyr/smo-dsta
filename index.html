@@ -11,8 +11,8 @@
     <p>Plant seed before and exit pipe after this time:
         <input type="text" name="" id="id_input" value="6:43"> </p>
     <hr>
-    <p>Set clock to: <span id="output" style="font-weight:bold;"></span></p>
-    <p>Wait <span id="output2" style="font-weight: bold;"></span> seconds before starting.</p>
+    <p>Set clock to: <span id="output" style="font-weight:bold;"></span>.<br> Use a US/Canada timezone that follows DST (example: New York)</p>
+    <p>Wait <span id="output2" style="font-weight: bold;"></span> seconds before starting the game after changing your clock.</p>
     <script>
         var calc = function () {
             var inp_cascadefade = document.getElementById("id_input").value
@@ -20,7 +20,7 @@
                 document.getElementById("id_input").style.backgroundColor = "lightgreen"
                 var parsed = inp_cascadefade.match(/^([0-9]*):([0-5][0-9])$/)
                 var offset = parseInt(parsed[1]) + parseInt(parsed[2]) / 60
-                var dst_rollover = new Date("2018-03-11T02:00:00")
+                var dst_rollover = Date.parse("11 Mar 2018 02:00:00-05:00")
                 var starttime = new Date(dst_rollover - (Math.ceil(offset) * 60 * 1000))
                 document.getElementById("output").textContent = starttime
                 document.getElementById("output2").textContent = Math.round((1 - (offset % 1)) * 60)
